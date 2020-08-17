@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns = "http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./../../WEB-INF/template/Template.xhtml" >
+
+    <ui:define name="content">
+        <h:form id="createProductoForm">
+            <div class="ui-fluid">
+                <f:metadata>                    
+                    <f:viewAction action="#{productoManagedBean.init()}" />
+                </f:metadata>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="./../../../../Principal.xhtml">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="./../../../../Principal.xhtml">Productos</a></li>
+                        <li class="breadcrumb-item"><a href="./../../../../Principal.xhtml">Procesos</a></li>                        
+                        <li class="breadcrumb-item active" aria-current="page">Nuevo Producto</li>
+                    </ol>
+                </nav>
+                <p:panel>
+                    <f:facet name="header">
+                        Formulario nuevo producto
+                    </f:facet>
+                    <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-2,ui-g-12 ui-md-3,ui-g-12 ui-md-2,ui-g-12 ui-md-4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                        <p:outputLabel for="@next" value="Categoría:" />
+                        <p:selectOneMenu id="idCategoria" value="#{productoManagedBean.categoria.idCategoria}" style="width:100%"
+                                         converter="omnifaces.SelectItemsConverter">
+                            <f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+                            <f:selectItems value="#{productoManagedBean.listaCategorias}"
+                                               var="item"
+                                               itemLabel="#{item.nombre}"
+                                               itemValue="#{item.idCategoria}" />                                                                        
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Nombre: " for="txtNombre" />
+                        <p:inputText id="txtNombre" value="#{productoManagedBean.producto.nombre}" required="true" />
+                        <p:outputLabel value="Descripción: " for="txtDescripcion" />
+                        <p:inputText id="txtDescripcion" value="#{productoManagedBean.producto.descripcion}" required="false" />
+                        <p:outputLabel value="Costo: " for="costo" />                        
+                        <p:inputNumber id="costo" value="#{productoManagedBean.producto.costo}" minValue="-1" maxValue="100000" decimalPlaces="2" required="true" />
+                        <p:outputLabel value="Precio: " for="precio" />                                                  
+                        <p:inputNumber id="precio" value="#{productoManagedBean.producto.precio}" minValue="-1" maxValue="100000" decimalPlaces="2" required="true" />
+                        <p:outputLabel value="Estado: "   for="cmbEstado" />
+                        <p:selectOneMenu id="cmbEstado" value="#{productoManagedBean.producto.flagEstado}" style="width:100%" required="true">
+                            <f:selectItem itemLabel="Activo" itemValue="1" />
+                            <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>                       
+                    </p:panelGrid>
+
+                    <br/>
+                    <div align="left" >
+                        <p:commandButton class="btn-button-save" style="width: auto" icon="fa fa-floppy-o"  actionListener="#{productoManagedBean.crearProducto(false)}"
+                                         value="Guardar" update="createProductoForm" process="createProductoForm"   >
+                        </p:commandButton>
+                        <p:commandButton class="btn-button-save" style="width: auto" icon="fa fa-list-alt"  actionListener="#{productoManagedBean.crearProducto(true)}"
+                                         value="Guardar y volver a la lista" update="createProductoForm" process="createProductoForm"  >
+                        </p:commandButton>
+                        <p:commandButton class="btn-cancel" style="width: auto" icon="fa fa-times-circle" action="/faces/modulos/productos/Listar.xhtml?faces-redirect=true"
+                                         value="Cancelar"  process="@this" >
+                            <p:confirm icon="fa fa-exclamation-triangle" header="Confirmación" message="¿Esta seguro que desea cancelar? El proceso, no se guardara ningún cambio ¿Desea continuar?" />
+                        </p:commandButton>
+                    </div>
+
+
+
+                </p:panel>  
+            </div>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

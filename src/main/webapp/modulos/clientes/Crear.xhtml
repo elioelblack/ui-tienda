@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns = "http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./../../WEB-INF/template/Template.xhtml" >
+
+    <ui:define name="content">
+        <h:form id="createClienteForm">
+            <div class="ui-fluid">
+                <f:metadata>                    
+                    <f:viewAction action="#{clienteManagedBean.init()}" />
+                </f:metadata>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="./../../../../Principal.xhtml">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="./../../../../Principal.xhtml">Cliente</a></li>
+                        <li class="breadcrumb-item"><a href="./../../../../Principal.xhtml">Procesos</a></li>                        
+                        <li class="breadcrumb-item active" aria-current="page">Nuevo Cliente</li>
+                    </ol>
+                </nav>
+                <p:panel>
+                    <f:facet name="header">
+                        Formulario nuevo Cliente
+                    </f:facet>
+                    <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-2,ui-g-12 ui-md-3,ui-g-12 ui-md-2,ui-g-12 ui-md-4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+
+                        <p:outputLabel value="Primer nombre: " for="txtNombre" />
+                        <p:inputText id="txtNombre" value="#{clienteManagedBean.cliente.primerNombre}" required="true" />
+                        <p:outputLabel value="Segundo nombre: " for="txtNombre2" />
+                        <p:inputText id="txtNombre2" value="#{clienteManagedBean.cliente.segundoNombre}" required="false" />
+                        <p:outputLabel value="Primer apellido: " for="txtNombre3" />
+                        <p:inputText id="txtNombre3" value="#{clienteManagedBean.cliente.primerApellido}" required="true" />
+                        <p:outputLabel value="Segundo apellido: " for="txtNombre4" />
+                        <p:inputText id="txtNombre4" value="#{clienteManagedBean.cliente.segundoApellido}" required="false" />
+                        <p:outputLabel value="N° Dui: " for="txtDui" />
+                        <p:inputMask id="txtDui" value="#{clienteManagedBean.cliente.duiCliente}" mask="99999999-9" tabindex="9" required="true">
+                            
+                        </p:inputMask>
+                        <p:outputLabel value="No. NIT: " for="txtNit" />
+                        <p:inputMask id="txtNit" value="#{clienteManagedBean.cliente.nitCliente}" mask="9999-999999-999-9" tabindex="10" required="true"/>
+                        <p:outputLabel value="Estado: "   for="cmbEstado" />
+                        <p:selectOneMenu id="cmbEstado" value="#{clienteManagedBean.cliente.flagEstado}" style="width:100%" required="true">
+                            <f:selectItem itemLabel="Activo" itemValue="1" />
+                            <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                        </p:selectOneMenu>                       
+                    </p:panelGrid>
+
+                    <br/>
+                    <div align="left" >
+                        <p:commandButton class="btn-button-save" style="width: auto" icon="fa fa-floppy-o"  actionListener="#{clienteManagedBean.crearCliente(false)}"
+                                         value="Guardar" update="createClienteForm" process="createClienteForm"   >
+                        </p:commandButton>
+                        <p:commandButton class="btn-button-save" style="width: auto" icon="fa fa-list-alt"  actionListener="#{clienteManagedBean.crearCliente(true)}"
+                                         value="Guardar y volver a la lista" update="createClienteForm" process="createClienteForm"  >
+                        </p:commandButton>
+                        <p:commandButton class="btn-cancel" style="width: auto" icon="fa fa-times-circle" action="/faces/modulos/clientes/Listar.xhtml?faces-redirect=true"
+                                         value="Cancelar"  process="@this" >
+                            <p:confirm icon="fa fa-exclamation-triangle" header="Confirmación" message="¿Esta seguro que desea cancelar? El proceso, no se guardara ningún cambio ¿Desea continuar?" />
+                        </p:commandButton>
+                    </div>
+
+
+
+                </p:panel>  
+            </div>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

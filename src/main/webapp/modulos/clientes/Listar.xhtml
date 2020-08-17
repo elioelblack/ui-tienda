@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns = "http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./../../WEB-INF/template/Template.xhtml" >
+    <ui:define name="content">
+        <h:form id="ListaClientesForm">
+            <f:metadata>
+                
+            </f:metadata>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./../../../Principal.xhtml">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="./../../../Principal.xhtml">Cliente</a></li>
+                    <li class="breadcrumb-item"><a href="./../../../Principal.xhtml">Procesos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Lista de clientes</li>
+                </ol>
+            </nav>
+            <p:panel>
+                <p:separator/>
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:commandButton  icon="fa fa-plus-circle" class="btn-button-save"
+                                value="Nuevo Cliente" update="ListaClientesForm" process="ListaClientesForm" 
+                                action="/faces/modulos/clientes/Crear.xhtml?faces-redirect=true">
+                            </p:commandButton>
+                        </div>                       
+                    </div>
+
+                    <p:separator/>
+                <p:dataTable id="dataList" var="item" value="#{clienteManagedBean.clientList}"
+                            rows="10"
+                            paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+                            rowsPerPageTemplate="5,10,15"
+                            emptyMessage="Ningun registro"
+                            paginatorPosition = "bottom">
+                    <f:facet name="header">
+                        Lista de Clientes
+                    </f:facet>
+                     
+                    <p:column headerText="Id">
+                        <h:outputText value="#{item.idCliente}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{item.primerNombre} #{item.segundoNombre}
+                                      #{item.primerApellido} #{item.segundoApellido}" />
+                    </p:column>
+                    <p:column headerText="DUI">
+                        <h:outputText value="#{item.duiCliente}" />
+                    </p:column>
+                    <p:column headerText="NIT">
+                        <h:outputText value="#{item.nitCliente}" />
+                    </p:column>
+                    <p:column width="12%" style="text-align: center" headerText="Acciones" >
+                        <p:link  outcome="/faces/modulos/clientes/Editar">
+                            <span class="fa fa-pencil" />
+                            <f:param name="idCliente" value="#{item.idCliente}" />
+                        </p:link>
+                        <p:spacer width="5px" />
+                        <p:commandLink action="#{clienteManagedBean.eliminar()}"   process="@this" update="dataList" >
+                            <span class="fa fa-trash" />
+                            <f:setPropertyActionListener  target="#{clienteManagedBean.cliente}" value="#{item}"/>
+                            <p:confirm icon="fa fa-exclamation-triangle" header="Confirmación" message="¿Esta seguro que desea eliminar el regístro?" />
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>            
+        </h:form>
+
+
+
+    </ui:define>
+
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

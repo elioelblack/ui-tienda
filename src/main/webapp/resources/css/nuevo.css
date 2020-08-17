@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02-abr-2020, 14:53:27
+    Author     : Douglas Ramirez
+*/
+
+.panelNoBorder{
+border: hidden;
+border-color: white;
+}
+
+.panelNoBor{
+border: hidden;
+border-color: white;
+}
+.layout-footer {
+    padding: 40px 64px;
+    box-shadow: 0 1px 8px 0 rgba(82, 85, 87, 0.08);
+    background-color: #ffffff;
+    width: 100%;
+}

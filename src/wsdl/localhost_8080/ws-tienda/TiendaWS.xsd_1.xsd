@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://soap.tienda.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://soap.tienda.com/">
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="crearProducto" type="tns:crearProducto"/>
+
+<xs:element name="crearProductoResponse" type="tns:crearProductoResponse"/>
+
+<xs:element name="editarCliente" type="tns:editarCliente"/>
+
+<xs:element name="editarClienteResponse" type="tns:editarClienteResponse"/>
+
+<xs:element name="editarProducto" type="tns:editarProducto"/>
+
+<xs:element name="editarProductoResponse" type="tns:editarProductoResponse"/>
+
+<xs:element name="eliminarCliente" type="tns:eliminarCliente"/>
+
+<xs:element name="eliminarClienteResponse" type="tns:eliminarClienteResponse"/>
+
+<xs:element name="eliminarProducto" type="tns:eliminarProducto"/>
+
+<xs:element name="eliminarProductoResponse" type="tns:eliminarProductoResponse"/>
+
+<xs:element name="getClientePorId" type="tns:getClientePorId"/>
+
+<xs:element name="getClientePorIdResponse" type="tns:getClientePorIdResponse"/>
+
+<xs:element name="getOrdenPorId" type="tns:getOrdenPorId"/>
+
+<xs:element name="getOrdenPorIdResponse" type="tns:getOrdenPorIdResponse"/>
+
+<xs:element name="getProductoPorId" type="tns:getProductoPorId"/>
+
+<xs:element name="getProductoPorIdResponse" type="tns:getProductoPorIdResponse"/>
+
+<xs:element name="init" type="tns:init"/>
+
+<xs:element name="initResponse" type="tns:initResponse"/>
+
+<xs:element name="listaCategorias" type="tns:listaCategorias"/>
+
+<xs:element name="listaCategoriasResponse" type="tns:listaCategoriasResponse"/>
+
+<xs:element name="listaClientes" type="tns:listaClientes"/>
+
+<xs:element name="listaClientesResponse" type="tns:listaClientesResponse"/>
+
+<xs:element name="listaOrdenes" type="tns:listaOrdenes"/>
+
+<xs:element name="listaOrdenesResponse" type="tns:listaOrdenesResponse"/>
+
+<xs:element name="listaProductos" type="tns:listaProductos"/>
+
+<xs:element name="listaProductosResponse" type="tns:listaProductosResponse"/>
+
+<xs:element name="nuevaOrden" type="tns:nuevaOrden"/>
+
+<xs:element name="nuevaOrdenResponse" type="tns:nuevaOrdenResponse"/>
+
+<xs:element name="nuevoCliente" type="tns:nuevoCliente"/>
+
+<xs:element name="nuevoClienteResponse" type="tns:nuevoClienteResponse"/>
+
+<xs:complexType name="listaOrdenes">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listaOrdenesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:orden" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="orden">
+<xs:sequence>
+<xs:element name="clienteId" type="tns:cliente" minOccurs="0"/>
+<xs:element name="fechaCrea" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaOrden" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="idOrden" type="xs:int" minOccurs="0"/>
+<xs:element name="nota" type="xs:string" minOccurs="0"/>
+<xs:element name="ordenDetalle" type="tns:ordenDetalle" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="ultimoUsuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cliente">
+<xs:sequence>
+<xs:element name="duiCliente" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaCrea" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="flagEstado" type="xs:int" minOccurs="0"/>
+<xs:element name="idCliente" type="xs:int" minOccurs="0"/>
+<xs:element name="nitCliente" type="xs:string" minOccurs="0"/>
+<xs:element name="primerApellido" type="xs:string" minOccurs="0"/>
+<xs:element name="primerNombre" type="xs:string" minOccurs="0"/>
+<xs:element name="segundoApellido" type="xs:string" minOccurs="0"/>
+<xs:element name="segundoNombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ordenDetalle">
+<xs:sequence>
+<xs:element name="cantidad" type="xs:int" minOccurs="0"/>
+<xs:element name="descuento" type="xs:double" minOccurs="0"/>
+<xs:element name="fechaCrea" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="idOrdenDetalle" type="xs:int" minOccurs="0"/>
+<xs:element name="iva" type="xs:double" minOccurs="0"/>
+<xs:element name="ordenId" type="tns:orden" minOccurs="0"/>
+<xs:element name="prodcutoId" type="tns:producto" minOccurs="0"/>
+<xs:element name="subtotal" type="xs:double" minOccurs="0"/>
+<xs:element name="total" type="xs:double" minOccurs="0"/>
+<xs:element name="ultimoUsuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="producto">
+<xs:sequence>
+<xs:element name="categoriaId" type="tns:productoCategoria" minOccurs="0"/>
+<xs:element name="costo" type="xs:double" minOccurs="0"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaCrea" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="flagEstado" type="xs:int" minOccurs="0"/>
+<xs:element name="idProducto" type="xs:int" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="precio" type="xs:double" minOccurs="0"/>
+<xs:element name="ultimoUsuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="productoCategoria">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaCrea" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="flagEstado" type="xs:int" minOccurs="0"/>
+<xs:element name="idCategoria" type="xs:int" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="ultimoUsuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getClientePorId">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getClientePorIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cliente" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="checkFaultBean">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getProductoPorId">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getProductoPorIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:producto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="init">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="initResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listaProductos">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listaProductosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:producto" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="nuevaOrden">
+<xs:sequence>
+<xs:element name="cliente_id" type="xs:int" minOccurs="0"/>
+<xs:element name="fecha_orden" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="nota" type="xs:string" minOccurs="0"/>
+<xs:element name="fecha_crea" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="ultimo_usuario" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="nuevaOrdenResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:orden" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listaCategorias">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listaCategoriasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:productoCategoria" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="nuevoCliente">
+<xs:sequence>
+<xs:element name="primer_nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="segundo_nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="primer_apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="segundo_apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="p_dui" type="xs:string" minOccurs="0"/>
+<xs:element name="p_nit" type="xs:string" minOccurs="0"/>
+<xs:element name="flag_estado" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="nuevoClienteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cliente" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listaClientes">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listaClientesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cliente" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarCliente">
+<xs:sequence>
+<xs:element name="cliente" type="tns:cliente" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarClienteResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearProducto">
+<xs:sequence>
+<xs:element name="producto" type="tns:producto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearProductoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:producto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarProducto">
+<xs:sequence>
+<xs:element name="producto" type="tns:producto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarProductoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getOrdenPorId">
+<xs:sequence>
+<xs:element name="id" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getOrdenPorIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:orden" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarProducto">
+<xs:sequence>
+<xs:element name="producto" type="tns:producto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarProductoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarCliente">
+<xs:sequence>
+<xs:element name="cliente" type="tns:cliente" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarClienteResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

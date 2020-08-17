@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    template="./WEB-INF/template/Template.xhtml">
+     
+    <h:head>
+        
+        <h:outputStylesheet library="css" name="cssLayout.css"></h:outputStylesheet>
+        <h:outputStylesheet library="css" name="default.css"></h:outputStylesheet>
+        <h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+        <h:outputStylesheet library="css" name="nuevo.css"></h:outputStylesheet>
+    </h:head>
+ 
+    <h:body>
+        <div id="content" class="center_content">
+                <div class="row">
+            <h:form>
+                <p:dataTable var="item" value="#{clienteManagedBean.clientList}">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{item.idCliente}" />
+                    </p:column>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{item.primerNombre} #{item.segundoNombre}
+                                      #{item.primerApellido} #{item.segundoApellido}" />
+                    </p:column>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{item.idCliente}" />
+                    </p:column>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{item.idCliente}" />
+                    </p:column>
+                   
+                </p:dataTable>
+            </h:form>
+                </div>
+        </div>
+
+        <!-- Librerias bootstrap js -->
+        <h:outputScript name="popper.min.js" library="js" target="head"/>
+        <h:outputScript name="bootstrap.min.js" library="js" target="head"/>
+        <h:outputScript name="custom.js" library="js" target="head"/>
+        <h:outputScript name="menusSide.js" library="js" target="head"/>
+    </h:body>
+</html>
